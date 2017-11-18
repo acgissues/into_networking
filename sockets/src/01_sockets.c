@@ -1,7 +1,12 @@
+/*
+ * connecting sockets, sending a message and waiting for a reply
+ */
+
 #include<stdio.h>
 #include<sys/socket.h>
 #include<string.h>
 #include<arpa/inet.h> // inet_addr
+#include<unistd.h>
 
 int main(int argc, char *argv[])
 {
@@ -13,12 +18,16 @@ int main(int argc, char *argv[])
     // int domain, int type, int protocol
     socket_desc = socket(AF_INET, SOCK_STREAM, 0); // socket(2)
 
-    if(socket_desc == -1)
-    {
+    if(socket_desc == -1){
         printf("could not create socket");
     }
 
-    server.sin_addr.s_addr = inet_addr("216.58.219.174"); // inet(3)
+    // deprecated, use inet_pton instead
+    // server.sin_addr.s_addr = inet_addr("216.58.219.174"); // inet(3)
+    if(inet_pton(AF_INET, "216.58.219.174", &(server.sin_addr)) < 0){
+        puts("error in ip address");
+        return 1;
+    }
     server.sin_family = AF_INET;
 
     // host short to network short
@@ -26,8 +35,8 @@ int main(int argc, char *argv[])
 
     // connect(3p)
     // necessary because of tcp before sending packets
-    if(connect(socket_desc, (struct sockaddr*)&server, sizeof(server)) < 0)
-    {
+    // sockaddr_in* can be cast to sockaddr* and vice-versa
+    if(connect(socket_desc, (struct sockaddr*)&server, sizeof(server)) < 0){
         puts("connect error");
         return 1;
     }
@@ -36,8 +45,7 @@ int main(int argc, char *argv[])
 
     // sending data send(3p)
     message = "GET / HTTP/1.1\r\n\r\n";
-    if(send(socket_desc, message, strlen(message), 0) < 0)
-    {
+    if(send(socket_desc, message, strlen(message), 0) < 0){
         puts("send failed");
         return 1;
     }
@@ -45,8 +53,7 @@ int main(int argc, char *argv[])
     puts("data sent\n");
 
     // revceiving reply
-    if(recv(socket_desc, server_reply, 2000, 0) < 0)
-    {
+    if(recv(socket_desc, server_reply, 2000, 0) < 0){
         puts("recv failed");
         return 1;
     }

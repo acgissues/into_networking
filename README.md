@@ -1,7 +1,13 @@
-# into networking
+# Into Networking
 
-this are my personal notes as i learn about tcp/ip stack and networking. feel free to contribute by proofreading.
+These are my personal notes as I learn about TCP/IP stack and networking. Feel
+free to contribute to this repo by checking the content.
 
-## books read
+## sockets
 
-- [TCP/IP Illustrated, Volume 1: The Protocols (2nd Edition) (Addison-Wesley Professional Computing Series)](https://www.amazon.com/TCP-Illustrated-Protocols-Addison-Wesley-Professional/dp/0321336313/ref=tmm_hrd_swatch_0?_encoding=UTF8&qid=&sr=)
+Theory and implementation of sockets.
+
+## `tcp_ip`
+
+TCP/IP theory, focusing on low-level details of Internet and it's related
+protocols.
