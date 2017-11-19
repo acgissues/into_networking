@@ -10,7 +10,7 @@ learn about sockets and their implementation.
 src/01_socket.c
 ```
 
-2. [Beej's Guide to Network Programming](Beej's Guide to Network Programming)
+2. [Beej's Guide to Network Programming](https://beej.us/guide/bgnet/output/html/multipage/index.html)
 
 3. Man Pages
 

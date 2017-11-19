@@ -12,7 +12,8 @@ TCP/IP is divided into four layers.
 |Link          |device driver and interface card|
 
 1. **Link / Data-Link Layer**
-    Includes drivers & network interface to handle the physical interface with the cable.
+    Includes drivers & network interface to handle the physical interface with
+    the cable.
 
 2. **Network Layer (also Internet Layer)**
     Handles the movement of packets around the network.
